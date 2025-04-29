@@ -24,7 +24,8 @@
                                 {{ Str::limit(strip_tags($berita->isi_berita), 100) }}
                             </p>
 
-                            <a href="#" class="text-blue-600 hover:underline text-sm">Baca Selengkapnya →</a>
+                            <a href="{{ route('berita.show', $berita->id_berita) }}" class="text-blue-600 hover:underline text-sm">Baca Selengkapnya →</a>
+
                         </div>
                     </div>
                 @endforeach
@@ -60,7 +61,8 @@
                                     {{ Str::limit(strip_tags($berita->isi_berita), 100) }}
                                 </p>
 
-                                <a href="#" class="text-blue-600 hover:underline text-sm">Baca Selengkapnya →</a>
+                                <a href="{{ route('berita.show', $berita->id_berita) }}" class="text-blue-600 hover:underline text-sm">Baca Selengkapnya →</a>
+
                             </div>
                         </div>
                     @endforeach

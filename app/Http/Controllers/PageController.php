@@ -50,4 +50,11 @@ class PageController extends Controller
         Page::findOrFail($id)->delete();
         return redirect()->route('page.index')->with('success', 'Page berhasil dihapus.');
     }
+
+    public function show($id)
+    {
+        $page = Page::findOrFail($id);
+        return view('page.detail', compact('page'));
+    }
+
 }

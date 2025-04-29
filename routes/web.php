@@ -18,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// Route detail berita
+Route::get('/berita/{id}', [BeritaController::class, 'show'])->name('berita.show');
+// Route page
+Route::get('/page/{id}', [PageController::class, 'show'])->name('page.show');
+
+
 Route::get('/contact', function () {
     return view('contact', ['title' => 'Contact']);
 });
@@ -55,6 +61,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/berita/ubah/{id}', [BeritaController::class, 'ubah'])-> name('berita.ubah');
         Route::put('/berita/prosesUbah/{id}', [BeritaController::class, 'prosesUbah'])-> name('berita.prosesUbah');
         Route::delete   ('/berita/hapus/{id}', [BeritaController::class, 'hapus'])-> name('berita.hapus');
+
 
         Route::get('/page', [PageController::class, 'index'])-> name('page.index');
         Route::get('/page/tambah', [PageController::class, 'tambah'])-> name('page.tambah');
