@@ -21,7 +21,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // Route detail berita
 Route::get('/berita/{id}', [BeritaController::class, 'show'])->name('berita.show');
 // Route page
-Route::get('/page/{id}', [PageController::class, 'show'])->name('page.show');
+Route::get('/{id}', [PageController::class, 'show'])->where('id', '[0-9]+')->name('page.show');
 
 
 Route::get('/contact', function () {
