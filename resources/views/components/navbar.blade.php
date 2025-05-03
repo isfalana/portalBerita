@@ -12,8 +12,13 @@
                         @foreach ($menus->where('parent_menu', null) as $menu)
                             @if ($menu->submenu->isNotEmpty())
                                 <div x-data="{ openDropdown: false }" class="relative">
+                                @php
+                                    $isActive = $menu->submenu->contains(function ($submenu) {
+                                        return request()->is(ltrim($submenu->url_menu, '/'));
+                                    });
+                                @endphp
                                     <button @click="openDropdown = !openDropdown"
-                                        class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium flex items-center">
+                                        class="{{ $isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} px-3 py-2 rounded-md text-sm font-medium flex items-center">
                                         {{ $menu->nama_menu }}
                                         <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -34,7 +39,7 @@
                                 </div>
                             @else
                                 <a href="{{ url($menu->url_menu) }}" target="{{ $menu->target_menu ?? '_self' }}"
-                                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                    class="{{ request()->is(ltrim($menu->url_menu, '/')) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} px-3 py-2 rounded-md text-sm font-medium">
                                     {{ $menu->nama_menu }}
                                 </a>
                             @endif
@@ -69,8 +74,13 @@
             @foreach ($menus->where('parent_menu', null) as $menu)
                 @if ($menu->submenu->isNotEmpty())
                     <div x-data="{ openSubmenu: false }">
+                    @php
+                        $isActive = $menu->submenu->contains(function ($submenu) {
+                            return request()->is(ltrim($submenu->url_menu, '/'));
+                        });
+                    @endphp
                         <button @click="openSubmenu = !openSubmenu"
-                            class="block w-full text-left rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white hover:bg-gray-700">
+                            class="block w-full text-left rounded-md px-3 py-2 text-base font-medium {{ $isActive ? 'bg-gray-900 text-white' : 'text-white hover:bg-gray-700' }}">
                             {{ $menu->nama_menu }}
                         </button>
                         <div x-show="openSubmenu" x-transition class="pl-5">
@@ -84,7 +94,7 @@
                     </div>
                 @else
                     <a href="{{ url($menu->url_menu) }}" target="{{ $menu->target_menu ?? '_self' }}"
-                        class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white">
+                        class="{{ request()->is(ltrim($menu->url_menu, '/')) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} block rounded-md px-3 py-2 text-base font-medium">
                         {{ $menu->nama_menu }}
                     </a>
                 @endif

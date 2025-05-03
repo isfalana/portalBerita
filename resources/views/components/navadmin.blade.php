@@ -14,11 +14,11 @@
                                     class="ml-10 flex items-baseline space-x-4"
                                 >
                                     <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                                    <x-navlink href="/admin" :active="request()->is('/admin')">Admin</x-navlink>
-                                    <x-navlink href="/admin/berita" :active="request()->is('/admin/berita')">Berita</x-navlink>
-                                    <x-navlink href="/admin/kategori" :active="request()->is('/admin/kategori')">Kategori</x-navlink>
-                                    <x-navlink href="/admin/page" :active="request()->is('/admin/page')">Page</x-navlink>
-                                    <x-navlink href="/admin/menu" :active="request()->is('/admin/menu')">Menu</x-navlink>
+                                    <x-navlink href="/admin" :active="request()->is('admin')">Admin</x-navlink>
+                                    <x-navlink href="/admin/berita" :active="request()->is('admin/berita*')">Berita</x-navlink>
+                                    <x-navlink href="/admin/kategori" :active="request()->is('admin/kategori*')">Kategori</x-navlink>
+                                    <x-navlink href="/admin/page" :active="request()->is('admin/page*')">Page</x-navlink>
+                                    <x-navlink href="/admin/menu" :active="request()->is('admin/menu*')">Menu</x-navlink>
                                     
                                 </div>
                             </div>
@@ -161,30 +161,35 @@
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                         <a
                             href="/admin"
-                            class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
-                            aria-current="page"
-                            >Admin</a
+                            class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('admin') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}"
                         >
+                            Admin
+                        </a>
                         <a
                             href="/admin/berita"
-                            class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                            >Berita</a
+                            class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('admin/berita*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}"
                         >
+                            Berita
+                        </a>
                         <a
                             href="/admin/kategori"
-                            class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                            >Kategori</a
+                            class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('admin/kategori*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}"
                         >
+                            Kategori
+                        </a>
                         <a
                             href="/admin/page"
-                            class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                            >Page</a
+                            class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('admin/page*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}"
                         >
+                            Page
+                        </a>
                         <a
                             href="/admin/menu"
-                            class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                            >Menu</a
+                            class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('admin/menu*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}"
                         >
+                            Menu
+                        </a>
+
                     </div>
                     <div class="border-t border-gray-700 pt-4 pb-3">
                         <div class="flex items-center px-5">
@@ -227,7 +232,7 @@
                                 >Settings</a
                             >
                             <a
-                                href="#"
+                                href="{{ route('logout') }}"
                                 class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                                 >Sign out</a
                             >
