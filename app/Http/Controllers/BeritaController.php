@@ -25,7 +25,7 @@ class BeritaController extends Controller
         $request->validate([
             'judul' => 'required',
             'id_kategori' => 'required|exists:kategori,id_kategori',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png',
             'isi' => 'required',
         ]);
     
