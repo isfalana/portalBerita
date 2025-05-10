@@ -34,6 +34,9 @@ Route::get('/about', function () {
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('login');
     Route::post('/login', [AuthController::class, 'verify'])->name('verify');
+
+    Route::get('/reset-password', [AuthController::class, 'formResetPassword'])->name('admin.resetPassword');
+    Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('admin.resetPassword.proses');
 });
 
 
@@ -42,10 +45,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 
-        Route::get('profile', [AuthController::class, 'profile'])->name('admin.profile');
-
-        Route::get('reset-password', [AuthController::class, 'formResetPassword'])->name('admin.resetPassword');
-        Route::post('reset-password', [AuthController::class, 'resetPassword'])->name('admin.resetPassword.proses');
+        Route::get('/profile', [AuthController::class, 'profile'])->name('admin.profile');
 
 
         Route::get('/kategori', [KategoriController::class, 'index'])-> name('kategori.index');

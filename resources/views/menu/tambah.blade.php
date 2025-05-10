@@ -74,7 +74,11 @@
         </select>
     </div>
 
-    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded">Simpan</button>
+    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-400">Simpan</button>
+    <a href="{{ route('menu.index')}}"
+        class="inline-block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-400">
+            Kembali
+    </a>
 </form>
 
 @endsection

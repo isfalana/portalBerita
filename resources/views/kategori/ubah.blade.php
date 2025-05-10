@@ -17,6 +17,10 @@
                 class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
         </div>
 
-        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-md">Update</button>
+        <button type="submit" class="bg-yellow-400 text-white px-4 py-2 rounded-md hover:bg-yellow-600">Update</button>
+        <a href="{{ route('kategori.index')}}"
+            class="inline-block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-400">
+                Kembali
+        </a>
     </form>
 @endsection

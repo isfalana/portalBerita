@@ -204,11 +204,14 @@ function menuForm() {
 
     {{-- Tombol Submit --}}
 
-    <button type="submit" class="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded">
-
+    <button type="submit" class="px-4 py-2 bg-yellow-400 hover:bg-yellow-600 text-white rounded">
         Simpan Perubahan
-
     </button>
+
+    <a href="{{ route('menu.index')}}"
+            class="inline-block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-400">
+            Kembali
+    </a>
 
 </form>
 

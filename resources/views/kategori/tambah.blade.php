@@ -16,6 +16,10 @@
                 class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
         </div>
 
-        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md">Simpan</button>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400">Simpan</button>
+        <a href="{{ route('kategori.index')}}"
+        class="inline-block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-400">
+            Kembali
+    </a>
     </form>
 @endsection

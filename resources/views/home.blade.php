@@ -23,7 +23,7 @@
     <div class="max-w-7xl mx-auto py-8 px-4">
 
     @php
-        $carouselItems = $beritas->take(3)->merge($mostViewed->take(3))->unique('id_berita');
+        $carouselItems = $beritas->take(5)->merge($mostViewed->take(5))->unique('id_berita');
     @endphp
 
     <div class="swiper beritaSwiper mb-10">

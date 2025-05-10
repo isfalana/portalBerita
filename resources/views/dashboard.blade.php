@@ -19,7 +19,9 @@
     <!-- Waktu Sekarang -->
     <div class="bg-white p-6 rounded-lg shadow-md">
         <h3 class="text-gray-500 text-sm">Tanggal Sekarang</h3>
-        <p class="text-2xl font-bold text-gray-700 mt-1">{{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}</p>
+        <p class="text-2xl font-bold text-gray-700 mt-1">
+            {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
+        </p>
     </div>
 </div>
 
@@ -30,33 +32,41 @@
     @if ($latestNews->isEmpty())
         <p class="text-gray-500 italic">Belum ada berita terbaru.</p>
     @else
-        <ul class="divide-y divide-gray-200">
+        <ul class="divide-y divide-gray-200 space-y-4">
             @foreach ($latestNews as $news)
-                <li class="py-2">
-                        {{-- Gambar --}}
+                <li class="pt-2 first:pt-0">
+                    {{-- Gambar --}}
                     @if ($news->gambar_berita)
-                        <img src="{{ asset('storage/' . $news->gambar_berita) }}"
-                            alt="Gambar Berita"
-                            class="h-40 w-40 object-cover">
-                    @else
-                        <div class="h-40 w-40 bg-gray-200 flex items-center justify-center text-gray-500 text-sm italic">
-                            Tidak ada gambar
+                            <img src="{{ asset('storage/' . $news->gambar_berita) }}"
+                                 alt="Gambar Berita"
+                                 class="h-32 w-32 object-cover rounded">
+                        @else
+                            <div class="h-32 w-32 bg-gray-200 flex items-center justify-center text-gray-500 text-sm italic rounded">
+                                Tidak ada gambar
+                            </div>
+                        @endif
+                    <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                        
+
+                        {{-- Info --}}
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start sm:items-center gap-2 flex-col sm:flex-row">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-800">{{ $news->judul_berita }}</p>
+                                    <p class="text-xs text-gray-500">
+                                        {{ \Carbon\Carbon::parse($news->created_at)->translatedFormat('d F Y') }}
+                                        — {{ $news->kategori->nama_kategori ?? 'Tanpa Kategori' }}
+                                    </p>
+                                </div>
+                                <a href="{{ route('berita.ubah', $news->id_berita) }}"
+                                   class="text-blue-600 text-sm font-medium hover:underline whitespace-nowrap">
+                                    Edit Berita →
+                                </a>
+                            </div>
                         </div>
-                    @endif
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <p class="text-sm font-medium text-gray-800">{{ $news->judul_berita }}</p>
-                            <p class="text-xs text-gray-500">
-                                {{ \Carbon\Carbon::parse($news->created_at)->translatedFormat('d F Y') }}
-                                — {{ $news->kategori->nama_kategori ?? 'Tanpa Kategori' }}
-                            </p>
-                        </div>
-                        <a href="{{ route('berita.ubah', $news->id_berita) }}"
-                           class="text-blue-600 text-sm font-medium hover:underline">Edit Berita →</a>
                     </div>
                 </li>
             @endforeach
-            
         </ul>
     @endif
 </div>

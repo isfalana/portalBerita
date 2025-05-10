@@ -16,7 +16,7 @@
                 {!! $berita->isi_berita !!}
             </div>
 
-            <a href="{{ url()->previous() }}" class="mt-6 inline-block text-blue-600 hover:underline">← Kembali</a>
+            <a href="{{ route('home') }}" class="mt-6 inline-block text-blue-600 hover:underline">← Kembali</a>
         </div>
 
         {{-- Sidebar Rekomendasi (1/3) --}}
