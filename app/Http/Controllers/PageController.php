@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berita;
 use Illuminate\Http\Request;
 use App\Models\Page;
+
 
 class PageController extends Controller
 {
@@ -54,7 +56,9 @@ class PageController extends Controller
     public function show($id)
     {
         $page = Page::findOrFail($id);
-        return view('page.detail', compact('page'));
+        $rekomendasi = Berita::where('id_berita', '!=', $id)->latest()->get();
+
+        return view('page.detail', compact('page', 'rekomendasi'));
     }
 
 }

@@ -85,11 +85,12 @@ class BeritaController extends Controller
     public function show($id)
     {
         $berita = Berita::findOrFail($id);
+        $rekomendasi = Berita::where('id_berita', '!=', $id)->latest()->get();
 
         // Tambahkan view
         $berita->increment('total_views');
 
-        return view('detailberita', compact('berita'));
+        return view('detailberita', compact('berita', 'rekomendasi'));
     }
     
 }
