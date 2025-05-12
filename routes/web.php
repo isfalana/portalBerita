@@ -16,6 +16,7 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 
 
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Route detail berita
@@ -34,6 +35,9 @@ Route::get('/about', function () {
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('login');
     Route::post('/login', [AuthController::class, 'verify'])->name('verify');
+
+    Route::get('/login/google', [AuthController::class, 'redirectToGoogle'])->name('login.google');
+    Route::get('/login/google/callback', [AuthController::class, 'handleGoogleCallback']);
 
     Route::get('/reset-password', [AuthController::class, 'formResetPassword'])->name('admin.resetPassword');
     Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('admin.resetPassword.proses');

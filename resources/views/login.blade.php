@@ -112,14 +112,16 @@
                         </button>
                     </form>
 
-                    <div class="p-5">
-                        <button
-                            type="button"
-                            class="transition duration-200 border border-gray-200 text-gray-500 w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-normal text-center inline-block"
-                        >
-                            Google
-                        </button>
-                    </div>
+                    <!-- <div class="p-5">
+                        <a href="{{ route('login.google') }}">
+                            <button
+                                type="button"
+                                class="transition duration-200 border border-gray-200 text-gray-500 w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-normal text-center inline-block"
+                            >
+                                Google
+                            </button>
+                        </a>
+                    </div> -->
 
                     <div class="py-5">
                         <div class="text-center whitespace-nowrap">

@@ -5,7 +5,7 @@
                             <div class="shrink-0">
                                 <img
                                     class="size-8"
-                                    src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
+                                    src="{{ asset('storage/Logo/logo.png') }}"
                                     alt="Your Company"
                                 />
                             </div>
@@ -44,11 +44,9 @@
                                             <span class="sr-only"
                                                 >Open user menu</span
                                             >
-                                            <img
-                                                class="size-8 rounded-full"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                alt=""
-                                            />
+                                            <div class="size-8 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold text-sm">
+                                                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                                            </div>
                                         </button>
                                     </div>
 
