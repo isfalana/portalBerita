@@ -41,8 +41,29 @@
             @empty
                 <p class="text-sm text-gray-500">Belum ada rekomendasi berita lain.</p>
             @endforelse
-        </div>
 
+            {{-- Berita dari API --}}
+            @if (!empty($beritaApi))
+                <h2 class="text-xl font-bold mt-8 mb-4">Berita Global</h2>
+
+                @foreach ($beritaApi as $item)
+                    <div class="bg-white rounded shadow overflow-hidden">
+                        @if (!empty($item['urlToImage']))
+                            <img src="{{ $item['urlToImage'] }}" alt="Gambar API"
+                                class="w-full h-24 object-cover">
+                        @endif
+                        <div class="p-3">
+                            <h3 class="text-sm font-semibold leading-snug">
+                                <a href="{{ $item['url'] }}" target="_blank"
+                                class="text-gray-800 hover:text-blue-600 hover:underline">
+                                    {{ Str::limit($item['title'], 60) }}
+                                </a>
+                            </h3>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+        </div>
     </div>
 
     @endsection

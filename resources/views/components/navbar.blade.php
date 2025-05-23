@@ -3,7 +3,7 @@
         <div class="flex h-16 items-center justify-between">
             <div class="flex items-center">
                 <div class="shrink-0">
-                    <img class="h-8 w-8" src="{{ asset('storage/Logo/logo.png') }}" alt="Logo">
+                    <a href="/"><img class="h-8 w-8" src="{{ asset('storage/Logo/logo.png') }}" alt="Logo"></a>
                     
                 </div>
 

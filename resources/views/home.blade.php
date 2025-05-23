@@ -124,6 +124,38 @@
             @endif
         </div>
 
+        <!-- Berita Lainnya dari API -->
+        <div class="mt-12">
+            <h2 class="text-2xl font-bold mb-6">Baca Berita Lainnya</h2>
+
+            @if (count($externalNews))
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @foreach ($externalNews as $news)
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                            @if ($news['urlToImage'])
+                                <img src="{{ $news['urlToImage'] }}" alt="Gambar" class="w-full h-48 object-cover">
+                            @else
+                                <div class="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-400">
+                                    Tidak ada gambar
+                                </div>
+                            @endif
+
+                            <div class="p-4">
+                                <h2 class="text-lg font-bold mb-2">{{ $news['title'] }}</h2>
+                                <p class="text-sm text-gray-600 mb-4">
+                                    {{ Str::limit($news['description'] ?? '', 100) }}
+                                </p>
+                                <a href="{{ $news['url'] }}" target="_blank" class="text-blue-600 hover:underline text-sm">Baca di sumber →</a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <p class="text-gray-500">Tidak dapat memuat berita dari API.</p>
+            @endif
+        </div>
+
+
     </div>
 
     @endsection

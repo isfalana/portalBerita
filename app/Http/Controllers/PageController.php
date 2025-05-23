@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Berita;
 use Illuminate\Http\Request;
 use App\Models\Page;
+use Illuminate\Support\Facades\Http;
 
 
 class PageController extends Controller
@@ -57,8 +58,15 @@ class PageController extends Controller
     {
         $page = Page::findOrFail($id);
         $rekomendasi = Berita::where('id_berita', '!=', $id)->latest()->get();
+        $apiResponse = Http::get('https://newsapi.org/v2/top-headlines', [
+            'country' => 'us',
+            'apiKey' => env('NEWS_API_KEY'),
+            'pageSize' => 5,
+        ]);
+        
+        $beritaApi = $apiResponse->ok() ? $apiResponse->json('articles') : [];
 
-        return view('page.detail', compact('page', 'rekomendasi'));
+        return view('page.detail', compact('page', 'rekomendasi', 'beritaApi'));
     }
 
 }

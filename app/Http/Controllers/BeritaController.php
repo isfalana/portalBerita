@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Berita;
 use App\Models\Kategori;
+use Illuminate\Support\Facades\Http;
 
 class BeritaController extends Controller
 {
@@ -85,12 +86,20 @@ class BeritaController extends Controller
     public function show($id)
     {
         $berita = Berita::findOrFail($id);
-        $rekomendasi = Berita::where('id_berita', '!=', $id)->latest()->get();
+        $rekomendasi = Berita::where('id_berita', '!=', $id)->get();
 
         // Tambahkan view
         $berita->increment('total_views');
 
-        return view('detailberita', compact('berita', 'rekomendasi'));
+        $apiResponse = Http::get('https://newsapi.org/v2/top-headlines', [
+            'country' => 'us',
+            'apiKey' => env('NEWS_API_KEY'),
+            'pageSize' => 5,
+        ]);
+        
+        $beritaApi = $apiResponse->ok() ? $apiResponse->json('articles') : [];
+
+        return view('detailberita', compact('berita', 'rekomendasi', 'beritaApi'));
     }
     
 }
