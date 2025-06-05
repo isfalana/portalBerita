@@ -9,6 +9,7 @@
     use Laravel\Socialite\Facades\Socialite;
     use App\Models\User;
     use Illuminate\Support\Str;
+    use Illuminate\Support\Facades\Http;
 
     class AuthController extends Controller
     {
@@ -53,7 +54,20 @@
             $validator = Validator::make($request->all(), [
                 'email' => 'required|email',
                 'password' => 'required',
+                'g-recaptcha-response' => 'required',
             ]);
+
+            $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                'secret' => env('RECAPTCHA_SECRET_KEY'),
+                'response' => $request->input('g-recaptcha-response'),
+                'remoteip' => $request->ip(),
+            ]);
+
+            if (! $response->json('success')) {
+                return back()->withErrors([
+                    'g-recaptcha-response' => 'Captcha tidak valid.',
+                ])->withInput();
+            }
         
             if ($validator->fails()) {
                 return redirect(route('index'))->withErrors($validator)->withInput();
