@@ -8,9 +8,11 @@
 
             <!-- Middle - simple nav links -->
             <div class="flex space-x-4 mb-4 md:mb-0">
-                <a href="/" class="hover:text-white text-sm transition">Home</a>
-                <a href="/about" class="hover:text-white text-sm transition">About</a>
-                <a href="/contact" class="hover:text-white text-sm transition">Contact</a>
+                <a href="/admin" class="hover:text-white text-sm transition">Admin</a>
+                <a href="/admin/berita" class="hover:text-white text-sm transition">Berita</a>
+                <a href="/admin/kategori" class="hover:text-white text-sm transition">Kategori</a>
+                <a href="/admin/page" class="hover:text-white text-sm transition">Page</a>
+                <a href="/admin/menu" class="hover:text-white text-sm transition">Menu</a>
             </div>
 
             <!-- Right side - social media icons -->

@@ -7,11 +7,28 @@
             </div>
 
             <!-- Middle - simple nav links -->
-            <div class="flex space-x-4 mb-4 md:mb-0">
-                <a href="/" class="hover:text-white text-sm transition">Home</a>
-                <a href="/about" class="hover:text-white text-sm transition">About</a>
-                <a href="/contact" class="hover:text-white text-sm transition">Contact</a>
+            <div class="flex flex-wrap gap-4 mb-4 text-sm text-gray-300">
+                @foreach ($menus->where('parent_menu', null) as $menu)
+                    {{-- Tampilkan menu utama jika tidak punya submenu --}}
+                    @if ($menu->submenu->isEmpty())
+                        <a href="{{ url($menu->url_menu) }}"
+                        target="{{ $menu->target_menu ?? '_self' }}"
+                        class="hover:text-white transition">
+                            {{ $menu->nama_menu }}
+                        </a>
+                    @else
+                        {{-- Tampilkan semua submenu --}}
+                        @foreach ($menu->submenu as $submenu)
+                            <a href="{{ url($submenu->url_menu) }}"
+                            target="{{ $submenu->target_menu ?? '_self' }}"
+                            class="hover:text-white transition">
+                                {{ $submenu->nama_menu }}
+                            </a>
+                        @endforeach
+                    @endif
+                @endforeach
             </div>
+
 
             <!-- Right side - social media icons -->
             <div class="flex space-x-4">
